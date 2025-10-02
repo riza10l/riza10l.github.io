@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riza Wahyu Nugraha - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f3f2ef;
+            color: #000000;
+        }
+
+        .container {
+            max-width: 1128px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Profile Card */
+        .profile-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 2px rgba(0,0,0,0.08);
+        }
+
+        .banner {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .profile-header {
+            padding: 0 24px 24px;
+            position: relative;
+        }
+
+        .profile-photo-wrapper {
+            margin-top: -75px;
+            margin-bottom: 12px;
+        }
+
+        .profile-photo {
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            background: white;
+        }
+
+        .profile-info h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.33333;
+        }
+
+        .profile-info .subtitle {
+            font-size: 16px;
+            color: rgba(0,0,0,0.9);
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .profile-info .location {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 12px;
+        }
+
+        .profile-info .contact-info {
+            font-size: 14px;
+            color: #0a66c2;
+            margin-bottom: 16px;
+        }
+
+        /* Social Buttons */
+        .social-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            border-radius: 24px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid;
+        }
+
+        .social-btn.primary {
+            background: #0a66c2;
+            color: white;
+            border-color: #0a66c2;
+        }
+
+        .social-btn.primary:hover {
+            background: #004182;
+            border-color: #004182;
+        }
+
+        .social-btn.secondary {
+            background: white;
+            color: #0a66c2;
+            border-color: #0a66c2;
+        }
+
+        .social-btn.secondary:hover {
+            background: #d0e8ff;
+            border-color: #0a66c2;
+        }
+
+        .social-btn.tertiary {
+            background: white;
+            color: rgba(0,0,0,0.6);
+            border-color: rgba(0,0,0,0.6);
+        }
+
+        .social-btn.tertiary:hover {
+            background: rgba(0,0,0,0.08);
+            border-color: rgba(0,0,0,0.6);
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 2px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .about-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.9);
+            white-space: pre-line;
+        }
+
+        /* Experience Section */
+        .experience-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 2px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .experience-preview {
+            max-height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .experience-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+            pointer-events: none;
+        }
+
+        .experience-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-icon {
+            width: 48px;
+            height: 48px;
+            background: #f3f2ef;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .experience-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.5;
+        }
+
+        .experience-content .company {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 4px;
+        }
+
+        .experience-content .duration {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+            margin-bottom: 8px;
+        }
+
+        .experience-content .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.9);
+        }
+
+        .expand-btn {
+            width: 100%;
+            padding: 12px;
+            background: white;
+            border: none;
+            color: rgba(0,0,0,0.6);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            margin-top: 12px;
+        }
+
+        .expand-btn:hover {
+            background: rgba(0,0,0,0.08);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 2px rgba(0,0,0,0.08);
+        }
+
+        .projects-preview {
+            max-height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .projects-preview.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+            pointer-events: none;
+        }
+
+        .project-item {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .project-header {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .project-image {
+            width: 80px;
+            height: 80px;
+            background: #f3f2ef;
+            border-radius: 4px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .project-info h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .project-info .description {
+            font-size: 14px;
+            line-height: 1.6;
+            color: rgba(0,0,0,0.9);
+            margin-bottom: 8px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .tech-tag {
+            padding: 4px 12px;
+            background: #f3f2ef;
+            border-radius: 16px;
+            font-size: 12px;
+            color: rgba(0,0,0,0.6);
+            font-weight: 600;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 8px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 2px rgba(0,0,0,0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 600;
+            color: #0a66c2;
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: rgba(0,0,0,0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .banner {
+                height: 120px;
+            }
+
+            .profile-photo-wrapper {
+                margin-top: -40px;
+            }
+
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .social-buttons {
+                flex-direction: column;
+            }
+
+            .social-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <div class="banner"></div>
+            <div class="profile-header">
+                <div class="profile-photo-wrapper">
+                    <img src="FotoProfil.jpg" alt="Riza Wahyu Nugraha" class="profile-photo">
+                </div>
+                <div class="profile-info">
+                    <h1>Riza Wahyu Nugraha</h1>
+                    <p class="subtitle">Cs student in UPI • Ilmu Komputer</p>
+                    <p class="location">Bandung, Jawa Barat, Indonesia</p>
+                    <p class="contact-info">Hit me up at</p>
+                    
+                    <div class="social-buttons">
+                        <a href="https://instagram.com/r1zawn" class="social-btn primary" target="_blank">
+                            📸 Instagram
+                        </a>
+                        <a href="https://www.linkedin.com/in/riza-wahyu-nugraha-0077b61b0" class="social-btn secondary" target="_blank">
+                            💼 LinkedIn
+                        </a>
+                        <a href="https://github.com/username" class="social-btn tertiary" target="_blank">
+                            💻 GitHub
+                        </a>
+                        <a href="mailto:email@example.com" class="social-btn tertiary">
+                            📧 Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="about-section">
+            <h2 class="section-title">Tentang</h2>
+            <p class="about-text">Selamat datang! Saya Mahasiswa Tahun Pertama Ilmu Komputer di Universitas Pendidikan Indonesia (UPI).
+
+Saat ini, saya sedang dalam proses eksplorasi mendalam di dunia Information Technology. Dua area yang paling menarik perhatian saya adalah Artificial Intelligence (AI) dan Arsitektur Komputer. Saya percaya bahwa inovasi sejati dalam AI akan datang dari sinergi antara algoritma cerdas dan perangkat keras yang efisien.
+
+Dengan visi tersebut, saya memiliki ambisi untuk berkarir sebagai Computer Hardware Engineer, fokus pada perancangan hardware mutakhir yang mendorong batas-batas kemampuan AI. 
+
+Tentang Website Ini:
+Website ini adalah proyek sederhana pertama saya, sebuah ruang untuk mendokumentasikan perjalanan belajar dan proyek-proyek awal saya. Sebagai mahasiswa yang baru terjun, saya sangat terbuka terhadap kritik dan saran. Jika Anda menemukan kendala teknis atau bug, mohon informasikan agar dapat segera saya perbaiki. 
+
+Terima kasih atas dukungannya!</p>
+        </div>
+
+        <!-- Experience Section -->
+        <div class="experience-section">
+            <h2 class="section-title">Pengalaman (hanya pemanis, soon saya isi yg asli)</h2>
+            <div class="experience-preview collapsed" id="experiencePreview">
+                <div class="experience-item">
+                    <div class="experience-icon">💼</div>
+                    <div class="experience-content">
+                        <h3>Frontend Developer</h3>
+                        <p class="company">PT. Digital Solutions</p>
+                        <p class="duration">Jan 2023 - Sekarang • 1 tahun</p>
+                        <p class="description">Mengembangkan aplikasi web menggunakan React dan Vue.js, kolaborasi dengan tim designer untuk implementasi UI/UX yang optimal dan responsif.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🎓</div>
+                    <div class="experience-content">
+                        <h3>Web Developer Intern</h3>
+                        <p class="company">CV. Tech Startup</p>
+                        <p class="duration">Jun 2022 - Des 2022 • 7 bulan</p>
+                        <p class="description">Membantu pengembangan website company profile dan sistem manajemen konten. Belajar best practices dalam web development dan kolaborasi tim.</p>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-icon">🏫</div>
+                    <div class="experience-content">
+                        <h3>Student Assistant</h3>
+                        <p class="company">Universitas Pendidikan Indonesia</p>
+                        <p class="duration">Sep 2021 - Des 2022 • 1 tahun 4 bulan</p>
+                        <p class="description">Membantu dosen dalam praktikum pemrograman dan memberikan tutorial kepada mahasiswa junior tentang dasar-dasar programming.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleSection('experience')">
+                <span id="experienceBtn">Tampilkan semua pengalaman →</span>
+            </button>
+        </div>
+
+        <!-- Projects Section -->
+        <div class="projects-section">
+            <h2 class="section-title">Hasil Kerja & Kreasi Digital (hanya pemanis, soon saya isi yg asli)</h2>
+            <div class="projects-preview collapsed" id="projectsPreview">
+                <div class="project-item">
+                    <div class="project-header">
+                        <img src="images/project1.png" alt="E-Commerce Project" class="project-image" onerror="this.style.background='linear-gradient(135deg, #667eea, #764ba2)'">
+                        <div class="project-info">
+                            <h3>🌐 Website E-Commerce</h3>
+                            <p class="description">Membangun platform e-commerce lengkap dengan sistem pembayaran, manajemen produk, dan dashboard admin. Menggunakan teknologi modern untuk performa optimal dan user experience yang excellent.</p>
+                        </div>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">PayPal API</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <img src="images/project2.png" alt="Mobile App" class="project-image" onerror="this.style.background='linear-gradient(135deg, #4facfe, #00f2fe)'">
+                        <div class="project-info">
+                            <h3>📱 Mobile App Design</h3>
+                            <p class="description">Merancang antarmuka pengguna untuk aplikasi mobile fintech dengan fokus pada kemudahan penggunaan dan estetika modern. Prototipe interaktif dengan Figma yang telah diuji dengan user testing.</p>
+                        </div>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Figma</span>
+                        <span class="tech-tag">UI/UX</span>
+                        <span class="tech-tag">Prototyping</span>
+                        <span class="tech-tag">React Native</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <img src="images/project3.png" alt="Chatbot AI" class="project-image" onerror="this.style.background='linear-gradient(135deg, #fa709a, #fee140)'">
+                        <div class="project-info">
+                            <h3>🤖 Chatbot AI</h3>
+                            <p class="description">Mengembangkan chatbot berbasis AI untuk customer service yang dapat memahami bahasa natural dan memberikan respons yang akurat sesuai konteks. Menggunakan NLP dan machine learning.</p>
+                        </div>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">NLP</span>
+                        <span class="tech-tag">Flask</span>
+                    </div>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-header">
+                        <img src="images/project4.png" alt="Dashboard" class="project-image" onerror="this.style.background='linear-gradient(135deg, #f093fb, #f5576c)'">
+                        <div class="project-info">
+                            <h3>📊 Dashboard Analytics</h3>
+                            <p class="description">Membuat dashboard real-time untuk analisis data bisnis dengan visualisasi interaktif. Terintegrasi dengan berbagai sumber data dan API untuk insights yang komprehensif.</p>
+                        </div>
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Chart.js</span>
+                    </div>
+                </div>
+            </div>
+            <button class="expand-btn" onclick="toggleSection('projects')">
+                <span id="projectsBtn">Tampilkan semua proyek →</span>
+            </button>
+        </div>
+
+        <!-- Stats/Analytics -->
+        <div class="stats-section">
+            <h2 class="section-title">Statistik</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Proyek selesai</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Teknologi dikuasai</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Tahun pengalaman</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSection(section) {
+            const preview = document.getElementById(section + 'Preview');
+            const btn = document.getElementById(section + 'Btn');
+            
+            if (preview.classList.contains('collapsed')) {
+                preview.classList.remove('collapsed');
+                preview.style.maxHeight = 'none';
+                btn.textContent = 'Tampilkan lebih sedikit ↑';
+            } else {
+                preview.classList.add('collapsed');
+                preview.style.maxHeight = '400px';
+                btn.textContent = section === 'experience' ? 
+                    'Tampilkan semua pengalaman →' : 
+                    'Tampilkan semua proyek →';
+                
+                // Scroll to section title
+                preview.parentElement.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }
+        }
+    </script>
+</body>
+</html>
